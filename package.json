@@ -1,0 +1,14 @@
+{
+  "name": "mkdocs-demo-toolchain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node toolchain for docs quality gates — markdownlint and OpenAPI validation",
+  "scripts": {
+    "lint:md": "markdownlint-cli2 \"docs/**/*.md\"",
+    "lint:oas": "vacuum lint docs/reference/openapi/*.yaml"
+  },
+  "devDependencies": {
+    "@quobix/vacuum": "^0.23.0",
+    "markdownlint-cli2": "^0.17.0"
+  }
+}

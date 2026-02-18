@@ -1,0 +1,7 @@
+/* extra.css — Material theme shim for Stoplight Elements */
+elements-api {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+  overflow: auto;
+}
