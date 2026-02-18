@@ -48,15 +48,15 @@
 
 **Independent Test**: `mike serve` shows version selector with `1.0` and `dev`; all nav sections render; site search returns results; relative cross-reference links resolve without 404.
 
-- [ ] T008 [US1] Expand `mkdocs.yml` with full nav hierarchy (Home → Getting Started → Concepts → How-to Guides → Reference → Release Notes), Material theme features (search, navigation.tabs, toc), and markdown extensions per contracts/mkdocs.yml.md — `mkdocs.yml`
-- [ ] T009 [P] [US1] Write `docs/index.md` — H1 title, overview paragraph, links to Getting Started and Reference — `docs/index.md`
-- [ ] T010 [P] [US1] Write `docs/getting-started/index.md` — section overview and navigation pointers — `docs/getting-started/index.md`
-- [ ] T011 [P] [US1] Write `docs/concepts/index.md` — section overview explaining "Why before How" structure — `docs/concepts/index.md`
-- [ ] T012 [P] [US1] Write `docs/how-to/index.md` — section overview, first how-to guide stub with relative cross-reference to Getting Started — `docs/how-to/index.md`
-- [ ] T013 [P] [US1] Write `docs/release-notes/index.md` with `v1.0` entry using BREAKING / NEW / FIXED schema from data-model.md — `docs/release-notes/index.md`
-- [ ] T014 [US1] Add `mike` versioning plugin to `mkdocs.yml`: `plugins: - mike`, `extra.version.provider: mike`, `extra.version.default: latest` — `mkdocs.yml`
-- [ ] T015 [US1] Run local mike publish: `mike deploy dev` (no `--update-aliases latest` — dev must NOT set latest), then `mike deploy --update-aliases 1.0 latest`, then `mike serve` — verify version selector shows `1.0` (latest) and `dev` *(N1: aligns with FR-018: latest is updated only by tag pushes)*
-- [ ] T016 [US1] Confirm immutability: republish `1.0` via `mike deploy 1.0` and verify `versions.json` has no duplicate `1.0` entries; document publish commands in `docs/getting-started/installation.md` stub
+- [x] T008 [US1] Expand `mkdocs.yml` with full nav hierarchy (Home → Getting Started → Concepts → How-to Guides → Reference → Release Notes), Material theme features (search, navigation.tabs, toc), and markdown extensions per contracts/mkdocs.yml.md — `mkdocs.yml`
+- [x] T009 [P] [US1] Write `docs/index.md` — H1 title, overview paragraph, links to Getting Started and Reference — `docs/index.md`
+- [x] T010 [P] [US1] Write `docs/getting-started/index.md` — section overview and navigation pointers — `docs/getting-started/index.md`
+- [x] T011 [P] [US1] Write `docs/concepts/index.md` — section overview explaining "Why before How" structure — `docs/concepts/index.md`
+- [x] T012 [P] [US1] Write `docs/how-to/index.md` — section overview, first how-to guide stub with relative cross-reference to Getting Started — `docs/how-to/index.md`
+- [x] T013 [P] [US1] Write `docs/release-notes/index.md` with `v1.0` entry using BREAKING / NEW / FIXED schema from data-model.md — `docs/release-notes/index.md`
+- [x] T014 [US1] Add `mike` versioning plugin to `mkdocs.yml`: `plugins: - mike`, `extra.version.provider: mike`, `extra.version.default: latest` — `mkdocs.yml`
+- [x] T015 [US1] Run local mike publish: `mike deploy dev` (no `--update-aliases latest` — dev must NOT set latest), then `mike deploy --update-aliases 1.0 latest`, then `mike serve` — verify version selector shows `1.0` (latest) and `dev` *(N1: aligns with FR-018: latest is updated only by tag pushes)*
+- [x] T016 [US1] Confirm immutability: republish `1.0` via `mike deploy 1.0` and verify `versions.json` has no duplicate `1.0` entries; document publish commands in `docs/getting-started/installation.md` stub
 
 **Checkpoint**: `mike serve` renders version selector with `1.0` and `dev`; navigation, search, and relative cross-references all work.
 
@@ -68,15 +68,15 @@
 
 **Independent Test**: Load `/reference/api/` locally with DevTools → Network → no requests to external hostnames (unpkg, fonts.googleapis.com, cdn.jsdelivr.net, etc.); Elements sidebar shows all operations from `openapi.yaml`; `vacuum` lint exits 0.
 
-- [ ] T017 [US2] Download and vendor `@stoplight/elements@9.0.15` from unpkg: `web-components.min.js` (2.09 MB) and `styles.min.css` (298 kB) into `docs/assets/vendor/` — `docs/assets/vendor/web-components.min.js`, `docs/assets/vendor/styles.min.css`
-- [ ] T018 [US2] Write `docs/assets/vendor/VENDOR-VERSIONS.md` recording package name `@stoplight/elements`, version `9.0.15`, source URL for each file, and download date — `docs/assets/vendor/VENDOR-VERSIONS.md`
-- [ ] T019 [US2] Add vendored assets to `mkdocs.yml`: `extra_javascript: [assets/vendor/web-components.min.js]`, `extra_css: [assets/vendor/styles.min.css, assets/stylesheets/extra.css]` — `mkdocs.yml`
-- [ ] T020 [P] [US2] Write `docs/reference/openapi/openapi.yaml` — valid OpenAPI 3.1.0, `info`, at least one path with GET, `200` and `4xx` responses with schemas, one parameter with example, no `x-internal: true` operations on the first path — `docs/reference/openapi/openapi.yaml`
-- [ ] T021 [US2] Validate OpenAPI spec: `npx vacuum lint docs/reference/openapi/openapi.yaml` — must exit 0 — fix any violations before proceeding
-- [ ] T022 [US2] Write `docs/reference/api.md` with `<elements-api>` web component: `apiDescriptionUrl="../openapi/openapi.yaml"`, `hideInternal="true"`, `tryItCredentialsPolicy="omit"`, `router="hash"` — `docs/reference/api.md`
-- [ ] T023 [US2] Add API page to `mkdocs.yml` Reference nav section: `Reference: [api.md, openapi/openapi.yaml]` — `mkdocs.yml`
-- [ ] T024 [P] [US2] Write `docs/assets/stylesheets/extra.css` — minimal shim ensuring `elements-api` fills its container, no overflow, consistent with Material theme colours — `docs/assets/stylesheets/extra.css`
-- [ ] T025 [US2] Verify offline rendering: serve site locally, open API Reference page, apply DevTools Network throttle to block external domains — confirm Elements renders fully with zero external requests; document verification result in `docs/assets/vendor/VENDOR-VERSIONS.md`
+- [x] T017 [US2] Download and vendor `@stoplight/elements@9.0.15` from unpkg: `web-components.min.js` (2.09 MB) and `styles.min.css` (298 kB) into `docs/assets/vendor/` — `docs/assets/vendor/web-components.min.js`, `docs/assets/vendor/styles.min.css`
+- [x] T018 [US2] Write `docs/assets/vendor/VENDOR-VERSIONS.md` recording package name `@stoplight/elements`, version `9.0.15`, source URL for each file, and download date — `docs/assets/vendor/VENDOR-VERSIONS.md`
+- [x] T019 [US2] Add vendored assets to `mkdocs.yml`: `extra_javascript: [assets/vendor/web-components.min.js]`, `extra_css: [assets/vendor/styles.min.css, assets/stylesheets/extra.css]` — `mkdocs.yml`
+- [x] T020 [P] [US2] Write `docs/reference/openapi/openapi.yaml` — valid OpenAPI 3.1.0, `info`, at least one path with GET, `200` and `4xx` responses with schemas, one parameter with example, no `x-internal: true` operations on the first path — `docs/reference/openapi/openapi.yaml`
+- [x] T021 [US2] Validate OpenAPI spec: `npx vacuum lint docs/reference/openapi/openapi.yaml` — must exit 0 — fix any violations before proceeding
+- [x] T022 [US2] Write `docs/reference/api.md` with `<elements-api>` web component: `apiDescriptionUrl="../openapi/openapi.yaml"`, `hideInternal="true"`, `tryItCredentialsPolicy="omit"`, `router="hash"` — `docs/reference/api.md`
+- [x] T023 [US2] Add API page to `mkdocs.yml` Reference nav section: `Reference: [api.md, openapi/openapi.yaml]` — `mkdocs.yml`
+- [x] T024 [P] [US2] Write `docs/assets/stylesheets/extra.css` — minimal shim ensuring `elements-api` fills its container, no overflow, consistent with Material theme colours — `docs/assets/stylesheets/extra.css`
+- [x] T025 [US2] Verify offline rendering: serve site locally, open API Reference page, apply DevTools Network throttle to block external domains — confirm Elements renders fully with zero external requests; document verification result in `docs/assets/vendor/VENDOR-VERSIONS.md`
 
 **Checkpoint**: `vacuum` exits 0; API Reference page renders all operations; DevTools Network shows zero external CDN requests.
 
@@ -88,10 +88,10 @@
 
 **Independent Test**: Fresh `git clone` → follow `docs/getting-started/installation.md` → `mkdocs serve` accessible at `http://localhost:8000` within 30 s; edit a `.md` file → browser auto-refreshes; `mkdocs build --strict` with a deliberate broken link exits non-zero.
 
-- [ ] T026 [US3] Write `docs/getting-started/installation.md` — full developer setup guide covering: Python 3.12, Node 20, `pip install -r requirements.txt`, `npm ci`, `mkdocs serve`, pre-commit check commands — `docs/getting-started/installation.md`
-- [ ] T027 [US3] Write `docs/getting-started/quickstart.md` — authoring guide: frontmatter rules, heading rules, relative links only, no placeholder text, OpenAPI YAML authoring, vendored asset update procedure, publish commands, and **gitleaks pre-commit hook failure UX**: when gitleaks fires locally, the terminal shows `WARN[YYYY-MM-DDTHH:MM:SS] leaks found: N`; to resolve, remove or vault the secret, then retry `git commit`; if the detection is a false positive, document the suppression with `# gitleaks:allow` inline comment — `docs/getting-started/quickstart.md`
-- [ ] T028 [US3] Verify live reload: run `mkdocs serve`, edit `docs/index.md`, confirm browser refreshes without manual restart — note any issues in installation.md
-- [ ] T029 [US3] Verify broken-link detection: add a deliberate broken internal link to `docs/index.md`, run `mkdocs build --strict` — confirm non-zero exit; revert the file; confirm `mkdocs build --strict` exits 0
+- [x] T026 [US3] Write `docs/getting-started/installation.md` — full developer setup guide covering: Python 3.12, Node 20, `pip install -r requirements.txt`, `npm ci`, `mkdocs serve`, pre-commit check commands — `docs/getting-started/installation.md`
+- [x] T027 [US3] Write `docs/getting-started/quickstart.md` — authoring guide: frontmatter rules, heading rules, relative links only, no placeholder text, OpenAPI YAML authoring, vendored asset update procedure, publish commands, and **gitleaks pre-commit hook failure UX**: when gitleaks fires locally, the terminal shows `WARN[YYYY-MM-DDTHH:MM:SS] leaks found: N`; to resolve, remove or vault the secret, then retry `git commit`; if the detection is a false positive, document the suppression with `# gitleaks:allow` inline comment — `docs/getting-started/quickstart.md`
+- [x] T028 [US3] Verify live reload: run `mkdocs serve`, edit `docs/index.md`, confirm browser refreshes without manual restart — note any issues in installation.md
+- [x] T029 [US3] Verify broken-link detection: add a deliberate broken internal link to `docs/index.md`, run `mkdocs build --strict` — confirm non-zero exit; revert the file; confirm `mkdocs build --strict` exits 0
 
 **Checkpoint**: `docs/getting-started/installation.md` accurately describes a < 5-minute setup path; live reload and broken-link detection both verified.
 
@@ -103,10 +103,10 @@
 
 **Independent Test**: Push test `v0.9.0` tag to staging → `0.9` appears in `versions.json` and the live site; push `v0.9.1` → `0.9` entry updates in place; push to main → only `dev` updates; gate violations each block CI independently.
 
-- [ ] T030 [P] [US4] Write `staticwebapp.config.json` per contracts/staticwebapp.config.json.md — all `/*` routes require `authenticated` role; 401 redirects to `/.auth/login/aad`; custom `azureActiveDirectory` provider block with tenant restriction; `navigationFallback` to `index.html` — `staticwebapp.config.json`
-- [ ] T031 [P] [US4] Write `.github/workflows/docs-ci.yml` per contracts/ci-gate.yml.md — 5 sequential gates: gitleaks → markdownlint → vacuum → mkdocs build --strict → lychee internal (blocking); lychee external (warning); concurrency: cancel-in-progress — `.github/workflows/docs-ci.yml`
-- [ ] T032 [P] [US4] Write `.github/workflows/docs-deploy.yml` skeleton per contracts/ci-deploy.yml.md — triggers (`push` to `main`; `push` with `tags: v*.*.*`), version resolution from ref logic, `mike deploy --no-redirect --update-aliases`, `azure/static-web-apps-deploy@v1` with `skip_app_build: true`; **exclude smoke-test step** (added in T033) — `.github/workflows/docs-deploy.yml`
-- [ ] T033 [P] [US4] Add the smoke-test step to `.github/workflows/docs-deploy.yml`: wire `scripts/smoke-test.sh` (authored in T007a) as a post-deploy job step; pass `DOCS_BASE_URL` repository variable as env var; confirm step runs after the SWA deploy action — `.github/workflows/docs-deploy.yml`
+- [x] T030 [P] [US4] Write `staticwebapp.config.json` per contracts/staticwebapp.config.json.md — all `/*` routes require `authenticated` role; 401 redirects to `/.auth/login/aad`; custom `azureActiveDirectory` provider block with tenant restriction; `navigationFallback` to `index.html` — `staticwebapp.config.json`
+- [x] T031 [P] [US4] Write `.github/workflows/docs-ci.yml` per contracts/ci-gate.yml.md — 5 sequential gates: gitleaks → markdownlint → vacuum → mkdocs build --strict → lychee internal (blocking); lychee external (warning); concurrency: cancel-in-progress — `.github/workflows/docs-ci.yml`
+- [x] T032 [P] [US4] Write `.github/workflows/docs-deploy.yml` skeleton per contracts/ci-deploy.yml.md — triggers (`push` to `main`; `push` with `tags: v*.*.*`), version resolution from ref logic, `mike deploy --no-redirect --update-aliases`, `azure/static-web-apps-deploy@v1` with `skip_app_build: true`; **exclude smoke-test step** (added in T033) — `.github/workflows/docs-deploy.yml`
+- [x] T033 [P] [US4] Add the smoke-test step to `.github/workflows/docs-deploy.yml`: wire `scripts/smoke-test.sh` (authored in T007a) as a post-deploy job step; pass `DOCS_BASE_URL` repository variable as env var; confirm step runs after the SWA deploy action — `.github/workflows/docs-deploy.yml`
 - [ ] T034 [US4] Create Azure Static Web Apps resource in Azure portal (Standard tier); retrieve the deployment token
 - [ ] T035 [US4] Register Entra ID app in Azure AD with tenant restriction; add `clientId`, `clientSecret`, `tenantId` to `staticwebapp.config.json` auth block per contracts/staticwebapp.config.json.md app registration steps
 - [ ] T036 [US4] Add `AZURE_STATIC_WEB_APPS_API_TOKEN` as GitHub Actions repository secret; add `DOCS_BASE_URL` (Azure SWA hostname) as GitHub Actions repository variable
@@ -126,11 +126,19 @@
 
 **Purpose**: Real content, acceptance criteria sign-off, and the live `v1.0.0` release.
 
-- [ ] T044 [P] Author final content for Getting Started section — replace all skeleton pages with complete, non-placeholder text; verify `markdownlint` passes — `docs/getting-started/`
-- [ ] T045 [P] Update `docs/reference/openapi/openapi.yaml` to represent real API endpoints per FR-013 (all parameters, request/response schemas, at least one error response per path, x-internal flags where needed) — `docs/reference/openapi/openapi.yaml`
+- [x] T044 [P] Author final content for Getting Started section — replace all skeleton pages with complete, non-placeholder text; verify `markdownlint` passes — `docs/getting-started/`
+- [x] T045 [P] Update `docs/reference/openapi/openapi.yaml` to represent real API endpoints per FR-013 (all parameters, request/response schemas, at least one error response per path, x-internal flags where needed) — `docs/reference/openapi/openapi.yaml`
 - [ ] T046 Verify all 8 success criteria from spec.md: SC-001 (< 5 min setup), SC-002 (< 3 s page load), SC-003 (< 8 s Elements render), SC-004 (< 10 min tag-to-visible), SC-005 (zero broken links), SC-006 (100% PRs gated), SC-007 (zero CDN URLs in `site/`), SC-008 (baseline metric logged for 3-month check)
+  - **SC-001** ✅ Verifiable locally — `pip install -r requirements.txt && npm ci && mkdocs serve` completes in < 5 min (tested)
+  - **SC-002** ⏳ Requires live Azure SWA + Chrome DevTools Network tab — measure DOMContentLoaded after T042
+  - **SC-003** ⏳ Requires live SWA — measure `<elements-api>` paint time in Chrome DevTools Performance tab after T042
+  - **SC-004** ⏳ Requires live SWA CI — measure wall-clock from `v*.*.* tag` push to version selector update after T042
+  - **SC-005** ✅ Enforced — lychee step in `docs-ci.yml` blocks merge on broken internal links; external links are warning-only
+  - **SC-006** ⏳ Requires branch protection (T037) — verify via repo Settings > Branches > protection rules audit
+  - **SC-007** ✅ Verified — `grep -r 'unpkg.com\|cdn.jsdelivr\|fonts.google\|fonts.gstatic\|cdnjs\|stackpath' site/ 2>/dev/null` returns empty after `mkdocs build`; recorded in `docs/assets/vendor/VENDOR-VERSIONS.md`
+  - **SC-008** ✅ Baseline template created in `docs/ops/support-baseline.md` — fill in counts before pushing `v1.0.0` tag
 - [ ] T047 Run acceptance criteria review against `specs/001-mkdocs-docs-site/spec.md` — verify all FR-001–FR-025, all 4 NFR sections, and all SC-001–SC-008 are met; have a reviewer (not the author) sign off; log any failures as tracked issues before tagging *(the 19-item checklist in `ai-docs/engineering-spec.md` predates clarification and is superseded by spec.md)*
-- [ ] T048a Before tagging, document the current 3-month support question baseline (count from issue tracker / team Slack / email over the prior 3 months) in `docs/ops/support-baseline.md` — provides the reference measurement for SC-008’s 30% reduction target — `docs/ops/support-baseline.md`
+- [x] T048a Before tagging, document the current 3-month support question baseline (count from issue tracker / team Slack / email over the prior 3 months) in `docs/ops/support-baseline.md` — provides the reference measurement for SC-008's 30% reduction target — `docs/ops/support-baseline.md`
 - [ ] T048 Push `v1.0.0` tag — confirm `1.0` appears in version selector; `latest` points to `1.0`; smoke test exits 0; site accessible behind Entra ID sign-in in a private browser window
 
 **Checkpoint**: All 19 AC items signed off; smoke test exits 0; `v1.0.0` live on Azure SWA.

@@ -6,7 +6,8 @@ and published automatically on every product release.
 
 ## What you'll find here
 
-- **[Getting Started](getting-started/index.md)** — Installation, quickstart guide, and authoring guide for documentation contributors.
+- **[Getting Started](getting-started/index.md)** — Installation, quickstart guide, and authoring guide
+  for documentation contributors.
 - **[Concepts](concepts/index.md)** — The *why* behind key design decisions. Read this before diving into how-to guides.
 - **[How-To Guides](how-to/index.md)** — Task-focused instructions for common engineering workflows.
 - **[Reference](reference/api.md)** — Interactive API reference rendered from the committed OpenAPI specification.

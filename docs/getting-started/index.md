@@ -11,4 +11,5 @@ This section covers everything a new contributor or consumer needs to begin work
 ## For documentation authors
 
 - Follow the [Installation guide](installation.md) to set up your local preview environment.
-- Read the [Quickstart guide](quickstart.md) for authoring rules: frontmatter, headings, relative links, and the OpenAPI YAML workflow.
+- Read the [Quickstart guide](quickstart.md) for authoring rules: frontmatter, headings,
+  relative links, and the OpenAPI YAML workflow.

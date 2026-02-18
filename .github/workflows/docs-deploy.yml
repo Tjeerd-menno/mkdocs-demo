@@ -1,0 +1,91 @@
+name: Docs Deploy
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write      # mike writes to git history / local dir
+  id-token: write      # OIDC if using federated identity instead of API token
+
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false   # never cancel a deploy mid-flight
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # ── Python toolchain ─────────────────────────────────────────────────
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      # ── Resolve version identifier ────────────────────────────────────────
+      - name: Resolve version
+        id: version
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG="${{ github.ref_name }}"               # e.g. v1.2.3
+            VER="${TAG#v}"                              # strip leading v → 1.2.3
+            ALIAS="${VER%.*}"                           # strip patch → 1.2
+            echo "alias=${ALIAS}"   >> "$GITHUB_OUTPUT"
+            echo "update_latest=true"  >> "$GITHUB_OUTPUT"
+          else
+            echo "alias=dev"        >> "$GITHUB_OUTPUT"
+            echo "update_latest=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ── Build versioned snapshot with mike ────────────────────────────────
+      - name: Deploy (tag → MAJOR.MINOR + latest)
+        if: steps.version.outputs.update_latest == 'true'
+        run: |
+          mike deploy \
+            --no-redirect \
+            --update-aliases \
+            "${{ steps.version.outputs.alias }}" latest
+
+      - name: Deploy (main → dev)
+        if: steps.version.outputs.update_latest == 'false'
+        run: |
+          mike deploy \
+            --no-redirect \
+            --update-aliases \
+            dev
+
+      # ── Deploy to Azure Static Web Apps ───────────────────────────────────
+      - name: Deploy to Azure SWA
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: "/"
+          output_location: "site"
+          skip_app_build: true    # mike already built; don't let SWA rebuild
+
+      # ── Post-deploy smoke test ────────────────────────────────────────────
+      - name: Smoke test
+        env:
+          TARGET_VERSION: ${{ steps.version.outputs.alias }}
+          DOCS_BASE_URL: ${{ vars.DOCS_BASE_URL }}    # set as repo variable (not secret)
+        run: bash scripts/smoke-test.sh
