@@ -1,7 +1,30 @@
 /* extra.css — Material theme shim for Stoplight Elements */
+
+/* Break out of Material's article max-width so Elements uses full page width */
+.md-content__inner:has(elements-api) {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hide the page H1 when Elements is present (it duplicates the API title) */
+.md-content__inner:has(elements-api) > h1:first-child {
+  display: none;
+}
+
 elements-api {
   display: block;
   width: 100%;
-  min-height: 600px;
-  overflow: auto;
+  /* Fill remaining viewport height below the MkDocs header (~48px) */
+  height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+/* Prevent Material theme's global svg rule from blowing up Elements icons */
+elements-api svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  display: inline !important;
+  vertical-align: middle !important;
 }

@@ -1,4 +1,9 @@
-# API Reference
+---
+title: API Reference
+hide:
+  - navigation
+  - toc
+---
 
 <elements-api
   apiDescriptionUrl="../openapi/openapi.yaml"
