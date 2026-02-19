@@ -60,7 +60,6 @@ jobs:
         if: steps.version.outputs.update_latest == 'true'
         run: |
           mike deploy \
-            --no-redirect \
             --update-aliases \
             "${{ steps.version.outputs.alias }}" latest
 
@@ -68,7 +67,6 @@ jobs:
         if: steps.version.outputs.update_latest == 'false'
         run: |
           mike deploy \
-            --no-redirect \
             --update-aliases \
             dev
 
