@@ -1,0 +1,55 @@
+openapi: "3.1.0"
+info:
+  title: Internal Product API
+  version: "1.0.0"
+  description: |
+    API reference for the internal product service.
+    This spec is committed alongside documentation and rendered via Stoplight Elements.
+servers:
+  - url: https://api.example.internal
+    description: Internal production endpoint (requires Entra ID authentication)
+tags:
+  - name: Operations
+    description: Service health and operational endpoints
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns 200 when the service is healthy.
+      operationId: getHealth
+      tags:
+        - Operations
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        "503":
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    ErrorResponse:
+      description: Standard error response returned by the service for 4xx and 5xx status codes.
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 503
+        message:
+          type: string
+          description: Human-readable error description
+          example: "Service unavailable"
