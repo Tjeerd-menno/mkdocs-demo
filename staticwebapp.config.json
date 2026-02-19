@@ -21,14 +21,6 @@
       "allowedRoles": ["anonymous"]
     },
     {
-      "route": "/*/assets/*",
-      "allowedRoles": ["anonymous"]
-    },
-    {
-      "route": "/*/reference/openapi/*",
-      "allowedRoles": ["anonymous"]
-    },
-    {
       "route": "/*",
       "allowedRoles": ["authenticated"]
     }
@@ -41,6 +33,6 @@
   },
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/.auth/*", "/assets/*", "/*/assets/*", "/reference/openapi/*", "/*/reference/openapi/*", "/versions.json"]
+    "exclude": ["/.auth/*", "/assets/*", "/versions.json"]
   }
 }
