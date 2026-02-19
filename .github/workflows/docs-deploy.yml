@@ -62,6 +62,7 @@ jobs:
           mike deploy \
             --update-aliases \
             "${{ steps.version.outputs.alias }}" latest
+          mike set-default latest
 
       - name: Deploy (main → dev)
         if: steps.version.outputs.update_latest == 'false'
@@ -69,6 +70,7 @@ jobs:
           mike deploy \
             --update-aliases \
             dev
+          mike set-default dev
 
       # ── Check out gh-pages content for SWA ───────────────────────────────
       # mike commit the built site to a local gh-pages branch. Check it out
