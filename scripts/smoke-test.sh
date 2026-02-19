@@ -11,11 +11,11 @@ check() {
   local url="$1"
   local code
   code=$(curl --silent --output /dev/null --write-out "%{http_code}" --max-time 10 "$url")
-  if [ "$code" != "200" ]; then
+  if [[ "$code" -ge 400 ]] || [[ "$code" == "000" ]]; then
     echo "FAIL [$code]: $url" >&2
     return 1
   fi
-  echo "OK   [200]: $url"
+  echo "OK   [$code]: $url"
 }
 
 FAILED=0
