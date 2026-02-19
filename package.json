@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "description": "Node toolchain for docs quality gates — markdownlint and OpenAPI validation",
+  "packageManager": "pnpm@10.29.2",
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "lint:md": "markdownlint-cli2 \"docs/**/*.md\"",
-    "lint:oas": "vacuum lint docs/reference/openapi/*.yaml"
+    "lint:oas": "vacuum lint docs/reference/openapi/openapi.yaml"
   },
   "devDependencies": {
     "@quobix/vacuum": "^0.23.0",
     "markdownlint-cli2": "^0.17.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@quobix/vacuum"]
   }
 }

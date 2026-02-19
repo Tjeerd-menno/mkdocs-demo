@@ -5,7 +5,8 @@ This guide covers the full developer setup from `git clone` to a running local p
 ## Prerequisites
 
 - **Python 3.12** ([python.org](https://www.python.org/downloads/))
-- **Node 20** ([nodejs.org](https://nodejs.org/))
+- **Node.js LTS** ([nodejs.org](https://nodejs.org/)) — v24 or later
+- **pnpm** ([pnpm.io](https://pnpm.io/installation)) — `npm install -g pnpm` or `corepack enable pnpm`
 - **pre-commit** (`pip install pre-commit`)
 
 ## Setup
@@ -14,7 +15,7 @@ This guide covers the full developer setup from `git clone` to a running local p
 git clone <repository-url>
 cd <repository-name>
 pip install -r requirements.txt
-npm ci
+pnpm install
 pre-commit install
 ```
 
@@ -37,13 +38,13 @@ Builds to `site/`. With `--strict`, all warnings become errors — fix them befo
 ## Lint Markdown
 
 ```bash
-npx markdownlint-cli2 "docs/**/*.md"
+pnpm run lint:md
 ```
 
 ## Lint OpenAPI spec
 
 ```bash
-npx vacuum lint docs/reference/openapi/*.yaml
+pnpm run lint:oas
 ```
 
 ## Local versioned preview (mike)

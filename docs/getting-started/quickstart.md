@@ -79,7 +79,7 @@ will hide them from the rendered API reference:
 Run before pushing:
 
 ```bash
-npx @quobix/vacuum lint docs/reference/openapi/openapi.yaml
+pnpm run lint:oas
 ```
 
 A 100/100 quality score is the target.
