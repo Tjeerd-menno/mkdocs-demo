@@ -70,6 +70,15 @@ jobs:
             --update-aliases \
             dev
 
+      # ── Check out gh-pages content for SWA ───────────────────────────────
+      # mike deploy commits the built site to gh-pages; the workspace itself
+      # has no built artefacts, so we check out that branch into a local dir.
+      - name: Check out gh-pages branch
+        run: |
+          git fetch origin gh-pages
+          git worktree add ./gh-pages-site gh-pages
+          cp staticwebapp.config.json gh-pages-site/
+
       # ── Deploy to Azure Static Web Apps ───────────────────────────────────
       - name: Deploy to Azure SWA
         uses: Azure/static-web-apps-deploy@v1
@@ -77,9 +86,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
-          app_location: "/"
-          output_location: "site"
-          skip_app_build: true    # mike already built; don't let SWA rebuild
+          app_location: "gh-pages-site"
+          output_location: ""
+          skip_app_build: true
 
       # ── Post-deploy smoke test ────────────────────────────────────────────
       - name: Smoke test
