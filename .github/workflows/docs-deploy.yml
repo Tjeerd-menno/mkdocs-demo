@@ -71,11 +71,10 @@ jobs:
             dev
 
       # ── Check out gh-pages content for SWA ───────────────────────────────
-      # mike deploy commits the built site to gh-pages; the workspace itself
-      # has no built artefacts, so we check out that branch into a local dir.
-      - name: Check out gh-pages branch
+      # mike commit the built site to a local gh-pages branch. Check it out
+      # into a worktree so the SWA action has a directory of artefacts to deploy.
+      - name: Prepare gh-pages worktree
         run: |
-          git fetch origin gh-pages
           git worktree add ./gh-pages-site gh-pages
           cp staticwebapp.config.json gh-pages-site/
 
@@ -89,6 +88,10 @@ jobs:
           app_location: "gh-pages-site"
           output_location: ""
           skip_app_build: true
+
+      # ── Push gh-pages to remote (preserve mike versioning history) ────────
+      - name: Push gh-pages
+        run: git push origin gh-pages
 
       # ── Post-deploy smoke test ────────────────────────────────────────────
       - name: Smoke test
